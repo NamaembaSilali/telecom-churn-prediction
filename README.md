@@ -1,5 +1,41 @@
 ### **THE CHURN FACTOR: UNLOCKING CUSTOMER ROYALTY IN TELECOM**
 
+![alt text](<Visualizations/customer churn.jpg>)
+
+[TOC]
+
+## Business Understanding
+
+This section provides an overview of the business problem and objectives.
+
+## Data Understanding
+
+This section explores the data sources, variables, and their characteristics.
+
+## Data Visualizations
+
+This section presents visualizations to understand the data patterns and relationships.
+
+## Data Preprocessing
+
+This section details the steps taken to clean and prepare the data for modeling.
+
+## Modeling
+
+This section describes the machine learning models used and their training process.
+
+## Model Evaluation
+
+This section evaluates the performance of the models using appropriate metrics.
+
+## Conclusion
+
+This section summarizes the key findings and insights from the project.
+
+## Next Steps
+
+This section outlines potential future directions and improvements.
+
 #### BUSINESS UNDERSTANDING
 
 Understanding telecom customer churn is crucial for businesses in the telecommunications industry, as it directly impacts revenue, customer retention, and overall profitability. Customer churn can be voluntary because of dissatisfaction in the services by the service provider and it can also be involuntary because of service disruption or payment issues. Understanding customer churn rates can have financial implications to the provider. Maintaining current customers is cheaper than that acquiring new ones. Analysing churn rates can give an advantage over competitors. This project aims to predict whether a customer will churn or not depending on the several factors on the datasets.
@@ -29,8 +65,22 @@ Voice Mail Plan: While the effect is less pronounced, having a voice mail plan a
 State and Area Code: While there are some variations in churn rates across states and area codes, these factors do not seem to be as significant as the international plan and voice mail plan.
 
 3. International plan vs Churn
+
 ![alt text](<Visualizations/International Plan vs Churn.png>)
 The plot suggests a strong association between having an international plan and customer churn. Customers who subscribed to the international plan are more likely to churn compared to those who did not. This could indicate potential issues or dissatisfaction with the international plan service, which might be worth investigating further.
+
+4. Pairplot
+
+![alt text](Visualizations/Pairplot.png)
+*Distributions*
+
+Features like 'customer service calls' and 'account length' show skewed distributions, suggesting they may have an impact on churn. The "customer service calls" feature appears to have distinct separations in churn behavior (many churned customers made a higher number of service calls).
+
+*Relationships*
+
+The scatter plots show the correlation between features and churn rates. For example, high total day minutes or total eve minutes don’t seem to correlate strongly with churn, given the scattered distribution.
+customer service calls seems to show some level of separation between churn and non-churn classes, implying it might be a significant predictor.
+
 
 **Data Preparation**
 1. Data Cleaning where all missing values were handled and duplicates were dropped.
@@ -41,31 +91,60 @@ The plot suggests a strong association between having an international plan and 
 **Modelling**
 Three different models were used inorder to compare which one has the best accuracy scores and recall precision balance.
 The models used were:
-1. Logistic regression which was the baseline model: 
-2. Decision tree
-3. Random Forest Classifier.
+1. *Logistic regression which was the baseline model*
+
+The logistic model was used a baseline model. This model however performed poorly in terms of recall and precision balance. The first model was build from a subset of features that had a huge impact on customer churn. These features include: 'customer service calls', 'total day minutes', 'total night minutes', 'total intl minutes', 'account length', 'churn'. The model however struggled to predict the correct instances. 
+The second logistic regression model was built with all the features and still struggled to correctly identify positive instances. This might be due to data complexity.
+
+2. *Decision tree*
+
+The decision tree performed excellently maintaining a good balance between precision and recall.
+
+3. *Random Forest Classifier*
+
+The random forest model show that it has achieved an accuracy of 96.85%, which is excellent. The precision, recall, and F1-score are also high
 
 **Model Evaluation**
-The models were evaluated using the following metrics: accuracy, precision, recall, F1 score, and ROC-AUC score.
-1. Logistic regression model: Accuracy: 0.859, Recall was 0.138 and the Precision was 0.666. There was no balance between recall and precision meaning that the model was struggling to detect positive cases correctly. Further tuning was done, using gridsearchCV and the results were as follows: Accuracy (0.864): This means that about 86.4% of the predictions made by the model are correct. However, accuracy alone can be misleading, especially if the classes are imbalanced.
-Precision (0.639): The precision score indicates that when the model predicts the positive class, it is correct 63.9% of the time. This suggests that there are still some false positives in the model's predictions.
-Recall (0.228): The recall score is quite low, at 22.8%. This implies that the model is not capturing a large portion of the actual positive cases, resulting in many false negatives.
-F1-score (0.336): The F1-score, which balances precision and recall, is relatively low. This further indicates that the model is struggling to achieve a good balance between precision and recall.
-2. Decision Tree: The evaluation metrics for the Decision Tree model indicate the following:
-Accuracy (0.9805): The model correctly classified 98.05% of the samples in the test set. This indicates a high overall performance.
-Precision (1.0000): The model achieved a perfect precision score, meaning all instances predicted as positive were indeed positive. There were no false positives.
-Recall (0.8713): The recall score of 87.13% indicates that out of all actual positive cases, the model correctly identified 87.13%. There were some false negatives (13), meaning the model missed a few positive cases.
-F1-score (0.9312): This score combines precision and recall into a single metric. A value of 0.9312 suggests a good balance between precision and recall.
-3. Random Forest Classifier: The model performs well in predicting non-churning customers, with high precision, recall, and F1-score.
-However, it struggles to identify churning customers, with a recall of only 0.50. This means that half of the actual churning customers are missed by the model.
-To improve the model, techniques such as adjusting class weights, using a different threshold for classification, or employing resampling methods (e.g., SMOTE) could help address the imbalance and improve the recall for the "True" class.
+The models were evaluated using metrics such as accuracy, precision, recall and f1 score. 
+In this particular problem the main focus was to correctly positive instances, that it correctly predict customer churn. F1 score was used to check for the balance between precision and recall. Random forest correctly achieved that making it the prefered model for this task.
+
+##### **CONCLUSION**
+
+The logistic regression model performed poorly even after multiple class weights adjustments and hyperparameter tuning, the recall scores were still too low. The overall Conclusion is that there might be data complexity leading to poor performance of the model.
+
+Based on the provided metrics, both the decision tree model and the random forest model with balanced class weights demonstrate strong performance on the test data.
+
+Decision Tree Model:
+
+Achieves an accuracy of 98.05%.
+Has high precision (1.0) and recall (0.87) for the positive class.
+F1-score of 0.93 indicates a good balance between precision and recall.
+
+Random Forest Model with Balanced Class Weights:
+
+Achieves an accuracy of 95.80%.
+Has high precision (1.0) and recall (0.72) for the positive class.
+F1-score of 0.91 indicates a good balance between precision and recall.
+Comparison:
+
+The decision tree model has a slightly higher overall accuracy (98.05% vs. 95.80%).
+The random forest model with balanced class weights has a slightly higher recall for the positive class (0.72 vs. 0.87).
+Recommendation:
+
+While both models perform well, the decision tree model might be slightly preferred due to its higher overall accuracy. In this case recall for the positive class is a critical factor, so random forest model with balanced class weights is be a better choice.
 
 
-#### NEXT STEPS:
-1. Feature importance and Interpretation 
-2. Model Deployment
-3. Model Maintenance and Updates
-4. Hyperparameter Tuning
-5. Model Evaluation, Comparison, Model Selection and Ensemble Methods
-6. Model Explainability and Transparency
+##### **NEXT STEPS**
+1. Deploy Model:
+Integration: Integrate the chosen model into the production environment.
+Monitoring: Implement monitoring mechanisms to track model performance over time and detect potential issues.
+
+2. Continuous Improvement:
+Data Updates: Regularly updating the training data to maintain model accuracy.
+Retraining: Retrain the model periodically to adapt to changes in data distribution.
+Model Evaluation: Continuously evaluate model performance and make necessary adjustments.
+
+3. Explore Other Techniques:
+Ensemble Methods: Considering ensemble techniques like stacking or boosting to combine multiple models and potentially improve performance.
+Deep Learning: Explore deep learning models (e.g., neural networks)
 
