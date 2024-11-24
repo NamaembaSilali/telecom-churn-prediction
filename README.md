@@ -12,7 +12,7 @@ This SyriaTel data is from https://www.kaggle.com/datasets/becksddf/churn-in-tel
 The dataset is visualized using the following plots:
 1. Churn Distribution
 
-![Churn Distribution](Visualizations/Churn Distribution.png)
+![alt text](<Visualizations/Churn Distribution.png>)
 
 The plot indicates a churn rate of 14.49%. This means that approximately 14.49% of customers have left or are likely to leave the company.The majority of customers (represented by the blue bar) have not churned (False). The smaller pink bar represents the portion of customers who have churned (True).
 Customer Retention: The company has a relatively high proportion of customers who have remained loyal.
