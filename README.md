@@ -2,40 +2,6 @@
 
 ![alt text](<Visualizations/customer churn.jpg>)
 
-[TOC]
-
-## Business Understanding
-
-This section provides an overview of the business problem and objectives.
-
-## Data Understanding
-
-This section explores the data sources, variables, and their characteristics.
-
-## Data Visualizations
-
-This section presents visualizations to understand the data patterns and relationships.
-
-## Data Preprocessing
-
-This section details the steps taken to clean and prepare the data for modeling.
-
-## Modeling
-
-This section describes the machine learning models used and their training process.
-
-## Model Evaluation
-
-This section evaluates the performance of the models using appropriate metrics.
-
-## Conclusion
-
-This section summarizes the key findings and insights from the project.
-
-## Next Steps
-
-This section outlines potential future directions and improvements.
-
 #### BUSINESS UNDERSTANDING
 
 Understanding telecom customer churn is crucial for businesses in the telecommunications industry, as it directly impacts revenue, customer retention, and overall profitability. Customer churn can be voluntary because of dissatisfaction in the services by the service provider and it can also be involuntary because of service disruption or payment issues. Understanding customer churn rates can have financial implications to the provider. Maintaining current customers is cheaper than that acquiring new ones. Analysing churn rates can give an advantage over competitors. This project aims to predict whether a customer will churn or not depending on the several factors on the datasets.
